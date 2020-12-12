@@ -1,0 +1,88 @@
+* {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+button, input[type=file]::-webkit-file-upload-button {
+    border-width: thin;
+    border-style: solid;
+    border-color: #520e47;
+    border-radius: 4px;
+
+    font-size: 18px;
+    padding: 0.5em 2em;
+    background-color: #eeeeee;
+}
+
+button:hover, input[type=file]::-webkit-file-upload-button:hover {
+    background-color: #520e47;
+    color: white;
+}
+
+#align-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    float: left;
+    margin: 2em;
+    width: 45%;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    border-width: medium;
+    border-style: solid;
+    border-color: #520e47;
+}
+
+form {
+    display: flex;
+    align-self: stretch;
+    justify-content: space-around;
+} 
+
+h1 {
+    display: flex;
+    align-self: center;
+    width: 40%;
+    word-spacing: 5px;
+    font-size: 30px;
+}
+
+#align-right {
+    float: right;
+    margin: 2em;
+    width: 45%;
+
+    border-width: thin;
+    border-style: solid;
+    border-color: #520e47;
+}
+
+.input-type {
+    width: 270px;
+}
+
+.img-div {
+    width: 300px;
+    height: 300px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #520e47;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}

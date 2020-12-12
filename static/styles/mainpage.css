@@ -1,5 +1,5 @@
 * {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 html{
@@ -43,7 +43,7 @@ button {
 }
 
 h1 {
-    font-size: 37px;
+    font-size: 40px;
     letter-spacing: 2px;
     word-spacing: 5px;
     font-weight: bolder;

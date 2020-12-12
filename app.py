@@ -1,13 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
+import os
 import pickle
 import numpy as np
 
+UPLOAD_FOLDER = 'static/uploads/'
+
 app = Flask(__name__, template_folder='templates')
+app.secret_key = "super-secret-key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/')
 def index():
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/draw')
 def draw():
@@ -16,6 +23,19 @@ def draw():
 @app.route('/upload')
 def upload():
     return render_template('upload.html')
+
+@app.route('/uploader', methods = ['POST', 'GET'])
+def uploader():
+    if request.method == 'POST':
+        uploadedfile = request.files.get('uploaded-file')
+
+        filename = secure_filename(uploadedfile.filename)
+        uploadedfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return render_template('upload.html', filename=filename)
+
+@app.route('/display/<filename>')
+def display_image(filename):
+	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 if __name__ == "__main__":
     app.run(debug=True)
