@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
+from PIL import Image
+import plotly.graph_objs as go
+import plotly.offline as plt
 import os
 import pickle
 import numpy as np
 
 UPLOAD_FOLDER = 'static/uploads/'
-
 app = Flask(__name__, template_folder='templates')
 app.secret_key = "super-secret-key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -36,6 +38,11 @@ def uploader():
 @app.route('/display/<filename>')
 def display_image(filename):
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
+@app.route('/predict')
+def predict(filename):
+    return
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
