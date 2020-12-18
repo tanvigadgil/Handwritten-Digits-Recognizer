@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from PIL import Image
 import plotly.graph_objs as go
@@ -29,20 +29,26 @@ def upload():
 @app.route('/uploader', methods = ['POST', 'GET'])
 def uploader():
     if request.method == 'POST':
-        uploadedfile = request.files.get('uploaded-file')
+        uploadedFile = request.files.get('uploaded-file')
 
-        filename = secure_filename(uploadedfile.filename)
-        uploadedfile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('upload.html', filename=filename)
+        filename = secure_filename(uploadedFile.filename)
+        uploadedFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return render_template('upload.html', filename=filename, predictDigit = predictDigit)
 
 @app.route('/display/<filename>')
-def display_image(filename):
+def displayImage(filename):
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
-@app.route('/predict')
-def predict(filename):
-    return
+@app.route('/predict', methods = ['POST', 'GET'])
+def predictDigit(filename):
+    img = Image.open(UPLOAD_FOLDER + filename).convert('L')
+    resizedImage = img.resize((28, 28))
+    pixelArray = np.array(resizedImage, dtype = 'float64')
+    modelInput = pixelArray.reshape(1, -1)
+    prediction = np.argmax(model.predict(modelInput))
+    return render_template('upload.html', digit = str(prediction))
     
+
 
 if __name__ == "__main__":
     app.run(debug=True)
