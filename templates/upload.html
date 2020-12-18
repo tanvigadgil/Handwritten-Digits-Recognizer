@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../static/styles/upload.css">
-    <script src="../static/styles/upload.js"></script>
     <title>Upload</title>
 </head>
 
@@ -20,19 +19,19 @@
         </form>
 
         <div class="img-div">
-            {% if filename %}
             <img src="{{ url_for('displayImage', filename=filename) }}">
-            <button id="predictBtn" onclick="predictDigit(filename)">Predict</button>
-            {% endif %}
+            <button id="predictBtn" data-fileName="{{filename}}">Predict</button>
         </div>
 
-        <h1 id="predictionText">PREDICTION: {{ digit }}</h1>
+        <h1>
+            PREDICTION: <span id="predictionText"></span>
+        </h1>
     </section>
 
     <section id="align-right">
 
     </section>
-
+    <script src="../static/styles/upload.js" defer></script>
 </body>
 
 </html>

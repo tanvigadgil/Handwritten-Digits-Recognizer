@@ -1,15 +1,15 @@
-let predictBtn = document.getElementById('predict')
+let predictBtn = document.getElementById('predictBtn')
 predictBtn.addEventListener('click', predictDigit)
 
-function predictDigit(filename) {
-    const xhr = new XMLHttpRequest()
-
-    xhr.open('GET', '/predict', true)
-    xhr.onload() = function() {
-        let prediction = this.response
-        let predictionText = document.getElementById('predictText')
-        `<h1>Prediction: ${prediction}</h1>`
-    }
-
-    xhr.send(filename)
+async function predictDigit(evt) {
+    const response = await fetch('/predict', {
+        method: 'POST',
+        body: JSON.stringify({ filename: evt.target.getAttribute('data-filename') }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    const data = await response.json();
+    let predictionText = document.getElementById('predictionText')
+    predictionText.innerText = data.prediction;
 }
