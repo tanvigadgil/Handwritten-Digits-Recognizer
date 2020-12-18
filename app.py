@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
 from PIL import Image
 import plotly.graph_objs as go
@@ -40,13 +40,13 @@ def displayImage(filename):
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 @app.route('/predict', methods = ['POST', 'GET'])
-def predictDigit(filename):
-    img = Image.open(UPLOAD_FOLDER + filename).convert('L')
+def predictDigit():
+    img = Image.open(UPLOAD_FOLDER + request.json["filename"]).convert('L')
     resizedImage = img.resize((28, 28))
     pixelArray = np.array(resizedImage, dtype = 'float64')
     modelInput = pixelArray.reshape(1, -1)
     prediction = np.argmax(model.predict(modelInput))
-    return render_template('upload.html', digit = str(prediction))
+    return jsonify({'prediction': str(prediction)}), 200
     
 
 
