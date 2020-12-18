@@ -20,18 +20,21 @@
 
         <div class="img-div">
             <img src="{{ url_for('displayImage', filename=filename) }}">
-            <button id="predictBtn" data-fileName="{{filename}}">Predict</button>
         </div>
 
+        <button id="predictBtn" data-fileName="{{filename}}">Predict</button>
+
         <h1>
-            PREDICTION: <span id="predictionText"></span>
+            PREDICTION: &nbsp <span id="predictionText"></span>
         </h1>
     </section>
 
     <section id="align-right">
-
+        <canvas id="bar-chart-horizontal" width="500" height="600"></canvas>
     </section>
+
     <script src="../static/styles/upload.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </body>
 
 </html>

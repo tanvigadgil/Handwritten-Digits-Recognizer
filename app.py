@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from werkzeug.utils import secure_filename
 from PIL import Image
-import plotly.graph_objs as go
-import plotly.offline as plt
 import os
 import pickle
 import numpy as np
+import pandas as pd
+import json
 
 UPLOAD_FOLDER = 'static/uploads/'
 app = Flask(__name__, template_folder='templates')
@@ -46,7 +46,10 @@ def predictDigit():
     pixelArray = np.array(resizedImage, dtype = 'float64')
     modelInput = pixelArray.reshape(1, -1)
     prediction = np.argmax(model.predict(modelInput))
-    return jsonify({'prediction': str(prediction)}), 200
+    probability = model.predict_proba(modelInput).reshape(-1)
+    roundedValues = np.around(probability, 3)
+    probabilityList = roundedValues.tolist()
+    return jsonify({'prediction': str(prediction), 'probability' : probabilityList}), 200
     
 
 
