@@ -14,7 +14,7 @@ async function predictDigit(evt) {
     predictionText.innerText = rsp.prediction;
     let probability = rsp.probability;
 
-    new Chart(document.getElementById("bar-chart-horizontal"), {
+    new Chart(document.getElementById("barChartHorizontal"), {
         type: 'horizontalBar',
         data: {
             labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],

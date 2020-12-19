@@ -33,7 +33,7 @@ def uploader():
 
         filename = secure_filename(uploadedFile.filename)
         uploadedFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('upload.html', filename=filename, predictDigit = predictDigit)
+        return render_template('upload.html', filename=filename)
 
 @app.route('/display/<filename>')
 def displayImage(filename):

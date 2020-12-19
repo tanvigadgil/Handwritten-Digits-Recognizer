@@ -24,7 +24,7 @@ button:hover, input[type=file]::-webkit-file-upload-button:hover {
     color: white;
 }
 
-#align-left {
+#alignLeft {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,7 +54,7 @@ h1 {
     font-size: 30px;
 }
 
-#align-right {
+#alignRight {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,11 +65,11 @@ h1 {
     padding: 0em 2em;
 }
 
-.input-type {
+.inputType {
     width: 270px;
 }
 
-.img-div {
+.imgDiv {
     width: 300px;
     height: 300px;
 
