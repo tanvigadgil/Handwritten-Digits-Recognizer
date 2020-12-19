@@ -4,7 +4,7 @@ predictBtn.addEventListener('click', predictDigit)
 async function predictDigit(evt) {
     const response = await fetch('/predict', {
         method: 'POST',
-        body: JSON.stringify({ filename: evt.target.getAttribute('data-filename') }),
+        body: JSON.stringify({ filename: evt.target.getAttribute('data-filename'), draw: false }),
         headers: {
             'Content-Type': 'application/json',
         },
@@ -26,7 +26,7 @@ async function predictDigit(evt) {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{
@@ -45,7 +45,7 @@ async function predictDigit(evt) {
             title: {
                 display: true,
                 text: 'Probability',
-                fontSize: 20,
+                fontSize: 25,
                 fontColor: '#520e47'
             }
         }

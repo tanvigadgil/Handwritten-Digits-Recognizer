@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from werkzeug.utils import secure_filename
 from PIL import Image
+from io import BytesIO
+import base64
 import os
 import pickle
 import numpy as np
@@ -41,12 +43,20 @@ def displayImage(filename):
 
 @app.route('/predict', methods = ['POST', 'GET'])
 def predictDigit():
-    img = Image.open(UPLOAD_FOLDER + request.json["filename"]).convert('L')
+    if(request.json["draw"]):
+        response = request.json["filename"]
+        encodedImage = response.split(",")[1]
+        decodedImage = base64.b64decode(encodedImage)
+        img = Image.open(BytesIO(decodedImage)).convert('L')
+
+    else:
+        img = Image.open(UPLOAD_FOLDER + request.json["filename"]).convert('L')
+
     resizedImage = img.resize((28, 28))
     pixelArray = np.array(resizedImage, dtype = 'float64')
     modelInput = pixelArray.reshape(1, -1)
-    prediction = np.argmax(model.predict(modelInput))
     probability = model.predict_proba(modelInput).reshape(-1)
+    prediction = np.argmax(probability)
     roundedValues = np.around(probability, 3)
     probabilityList = roundedValues.tolist()
     return jsonify({'prediction': str(prediction), 'probability' : probabilityList}), 200

@@ -1,6 +1,7 @@
 const canvas = document.getElementById('canvas');
 
 let predictBtn = document.getElementById('predictBtn');
+predictBtn.disabled = true;
 predictBtn.addEventListener('click', predictDigit);
 
 let clearBtn = document.getElementById('clearBtn');
@@ -41,6 +42,8 @@ function stopPainting() {
 function sketch(evt) {
     if (!paint) return;
 
+    predictBtn.disabled = false;
+
     ctx.beginPath();
     ctx.lineWidth = 7;
     ctx.lineCap = 'round';
@@ -54,6 +57,7 @@ function sketch(evt) {
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    predictBtn.disabled = true;
 }
 
 async function predictDigit() {
@@ -61,7 +65,7 @@ async function predictDigit() {
 
     const response = await fetch('/predict', {
         method: 'POST',
-        body: JSON.stringify({ filename: dataURI }),
+        body: JSON.stringify({ filename: dataURI, draw: true }),
         headers: {
             'Content-Type': 'application/json',
         },
@@ -83,7 +87,7 @@ async function predictDigit() {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{
@@ -102,7 +106,7 @@ async function predictDigit() {
             title: {
                 display: true,
                 text: 'Probability',
-                fontSize: 20,
+                fontSize: 25,
                 fontColor: '#520e47'
             }
         }
