@@ -10,10 +10,14 @@ Important Libraries Used:
 - Flask framework for web application
 
 ## Screenshots
+- index.html
+
+![](https://github.com/tanvigadgil/Handwritten-Digits-Recognizer/blob/main/static/img/Screenshot_index.png)
+
 - upload.html
 
-![](https://github.com/tanvigadgil/Handwritten-Digits-Recognizer/blob/GUI/static/img/Screenshot_upload_image.png)
+![](https://github.com/tanvigadgil/Handwritten-Digits-Recognizer/blob/main/static/img/Screenshot_upload_image.png)
 
 - draw.html
 
-![](https://github.com/tanvigadgil/Handwritten-Digits-Recognizer/blob/GUI/static/img/Screenshot_draw_digit.png)
+![](https://github.com/tanvigadgil/Handwritten-Digits-Recognizer/blob/main/static/img/Screenshot_draw_digit.png)
