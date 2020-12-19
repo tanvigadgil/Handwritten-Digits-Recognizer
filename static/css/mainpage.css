@@ -1,0 +1,73 @@
+* {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+html{
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background-image: url("../img/NN_purple.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+section {
+    width: 40%;
+    text-align: center;
+    padding: 2em;
+    background: rgba(0, 0, 0, 0.45);
+
+    position: absolute;
+    top: 22%;
+    left: 13%;
+
+    border-width: medium;
+    border-style: solid;
+    border-color: black;
+    border-radius: 8px;
+}
+
+button {
+    border-width: thin;
+    border-style: solid;
+    border-color:white;
+    border-radius: 4px;
+
+    background-color: transparent;
+    font-size: 18px;
+    padding: 0.5em 2em;
+    margin-bottom: 1em;
+}
+
+h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    font-weight: bolder;
+}
+
+p {
+    font-size: 19px;
+    text-align: center;
+}
+
+#flex-parent {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    margin: 0;
+}
+
+.font-colour {
+    color: white;
+}
+
+button:hover {
+    background-color: white;
+    color: #520e47;
+}

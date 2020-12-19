@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/mainpage.css">
+    <title>Handwritten Digit Recognizer</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div>
+            <h1 class="font-colour">HANDWRITTEN DIGIT RECOGNIZER</h1>
+        </div>
+
+        <div id="flex-parent">
+            <div class="flex-child">
+                <p class="font-colour">Upload an image of a digit.</p>
+                <a href="{{url_for('upload')}}">
+                    <button type="button" class="font-colour">Upload</button>
+                </a>
+            </div>
+
+            <div class="flex-child">
+                <p class="font-colour">Draw a digit.</p>
+                <a href="{{url_for('draw')}}">
+                    <button type="button" onclick="draw()" class="font-colour">Draw</button>
+                </a>
+            </div>
+            
+        </div>
+
+    </section>
+
+</body>
+
+</html>

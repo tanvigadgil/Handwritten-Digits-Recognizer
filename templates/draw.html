@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/draw.css">
+    <title>Draw</title>
+</head>
+
+<body>
+
+    <section id="alignLeft">
+        <div id="btnsDiv">
+            <button id="predictBtn">Predict</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+
+        <canvas id="canvas"></canvas>
+
+        <h1>
+            PREDICTION: &nbsp <span id="predictionText"></span>
+        </h1>
+    </section>
+
+    <section id="alignRight">
+        <canvas id="barChartHorizontal" width="500" height="600"></canvas>
+    </section>
+
+    <script src="../static/js/draw.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</body>
+
+</html>
