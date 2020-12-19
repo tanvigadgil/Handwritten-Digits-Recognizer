@@ -14,7 +14,11 @@ async function predictDigit(evt) {
     predictionText.innerText = rsp.prediction;
     let probability = rsp.probability;
 
-    new Chart(document.getElementById("barChartHorizontal"), {
+    let chart = document.getElementById("barChartHorizontal");
+    chart.height = 600;
+    chart.width = 500;
+
+    new Chart(chart, {
         type: 'horizontalBar',
         data: {
             labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
@@ -36,6 +40,7 @@ async function predictDigit(evt) {
                 }],
                 yAxes: [{
                     barThickness: 40,
+                    categoryPercentage: 0.4,
                     gridLines: {
                         display: false
                     }
