@@ -22,7 +22,9 @@
             <img src="{{ url_for('displayImage', filename=filename) }}">
         </div>
 
-        <button id="predictBtn" data-fileName="{{filename}}">Predict</button>
+        {% if filename %}
+            <button id="predictBtn" data-fileName="{{filename}}">Predict</button>
+        {% endif %}
 
         <h1>
             PREDICTION: &nbsp <span id="predictionText"></span>
