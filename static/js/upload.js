@@ -18,7 +18,11 @@ async function predictDigit(evt) {
     chart.height = 600;
     chart.width = 500;
 
-    new Chart(chart, {
+    if(window.myChart != undefined) {
+        window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(chart, {
         type: 'horizontalBar',
         data: {
             labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
